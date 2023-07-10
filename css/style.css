@@ -7,6 +7,8 @@ Dark green: #28b485
 
 */
 
+@import "./animations.css";
+
 * {
     margin: 0;
     padding: 0;
@@ -51,6 +53,7 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .heading-primary {
@@ -58,6 +61,7 @@ body {
     text-transform: uppercase;
 
     backface-visibility: hidden;
+    margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -82,35 +86,56 @@ body {
     animation-timing-function: ease-in;
 }
 
-@keyframes moveInLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-100px);
-    }
-
-
-    80% {
-        transform: translateX(10px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;   
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 40px;
+    transition: all .2s;
+    position: relative;
 }
 
-@keyframes moveInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(100px);
-    }
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
 
-    80% {
-        transform: translateX(-20px);
-    }
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
 
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.btn-white {
+    background-color: #fff;
+    color: #777;
+}
+
+.btn-animated {
+    animation: moveInBottom .5s ease-in;
+    animation-delay: .75s;
+    animation-fill-mode: backwards; /* the element get the style values set by the first keyframe before the animation starts */
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
 }
